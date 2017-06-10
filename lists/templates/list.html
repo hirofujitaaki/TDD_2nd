@@ -1,21 +1,14 @@
-<html>
-    <head>
-        <title>To-Do lists</title>
-    </head>
-    <body>
-        <h1>Your To-Do list</h1>
-        <form method="POST" action="/lists/{{ list.id }}/add_item">
-            <!-- without 'action', the browser sends the POSt data -->
-            <!-- back to the same URL it's currently on. -->
-            <input name="item_text" id="id_new_item" placeholder="Enter a to-do item" />
-            {% csrf_token %}
-        </form>
+{% extends 'base.html' %}
 
-        <table id="id_list_table">
-            <!-- at the end of chapter7 -->
-            {% for item in list.item_set.all %}
-                <tr><td>{{ forloop.counter }}: {{ item.text }}</td></tr>
-            {% endfor %}
-        </table>
-    </body>
-</html>
+{% block header_text %} Your To-Do list {% endblock header_text %}
+
+{% block form_action %}/lists/{{ list.id }}/add_item{% endblock %}
+
+{% block table %}
+    <table id="id_list_table">
+        <!-- at the end of chapter7 -->
+        {% for item in list.item_set.all %}
+            <tr><td>{{ forloop.counter }}: {{ item.text }}</td></tr>
+        {% endfor %}
+    </table>
+{% endblock %}
