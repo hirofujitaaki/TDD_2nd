@@ -1,1 +1,1 @@
-django==1.11rcl
+django==1.11rc1
